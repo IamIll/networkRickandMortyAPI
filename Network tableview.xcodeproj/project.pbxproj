@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3325E5C9286B280700C6400D /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325E5C8286B280700C6400D /* NetworkAPI.swift */; };
 		3340601D2864AD42002356F3 /* UITableDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3340601C2864AD42002356F3 /* UITableDS.swift */; };
 		3340602328665122002356F3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3340602228665122002356F3 /* LocationViewController.swift */; };
 		3340602528665143002356F3 /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3340602428665143002356F3 /* EpisodeViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3325E5C8286B280700C6400D /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		3340601C2864AD42002356F3 /* UITableDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableDS.swift; sourceTree = "<group>"; };
 		3340602228665122002356F3 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		3340602428665143002356F3 /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				33BE4F7E286003EB00CB4712 /* DetailController.swift */,
 				33BE4F76285A69D100CB4712 /* CustomTableViewCell.swift */,
 				3340602428665143002356F3 /* EpisodeViewController.swift */,
+				3325E5C8286B280700C6400D /* NetworkAPI.swift */,
 				3340602228665122002356F3 /* LocationViewController.swift */,
 				33BE4F62285A068900CB4712 /* SceneDelegate.swift */,
 				33BE4F78285B8A1100CB4712 /* Model.swift */,
@@ -171,6 +174,7 @@
 				33BE4F7D285D047E00CB4712 /* ViewControllerTable.swift in Sources */,
 				33BE4F77285A69D100CB4712 /* CustomTableViewCell.swift in Sources */,
 				3340602328665122002356F3 /* LocationViewController.swift in Sources */,
+				3325E5C9286B280700C6400D /* NetworkAPI.swift in Sources */,
 				33BE4F63285A068900CB4712 /* SceneDelegate.swift in Sources */,
 				3340601D2864AD42002356F3 /* UITableDS.swift in Sources */,
 			);

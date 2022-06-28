@@ -12,11 +12,13 @@ class MainViewController: UIViewController, UITableViewDelegate, TableDelegate {
     @IBOutlet var table: UITableView!
     
     var tableDS = TableDS()
+    var netwok = NetworkAPI()
     var index: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableDS.fetchData()
+        
+        tableDS.networkUpdate()
         table.dataSource = tableDS
         table.delegate = self
         tableDS.delegate = self

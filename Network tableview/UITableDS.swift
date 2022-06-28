@@ -14,27 +14,20 @@ class TableDS: NSObject, UITableViewDataSource {
     
     var delegate: TableDelegate?
     
+    var shareAPI = NetworkAPI()
+    
     let basicURL = "https://rickandmortyapi.com/api/character"
     
     var dateAPI: API?
     
-    func fetchData() {
-    
-        guard let url = URL(string: basicURL) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            
-            guard let data = data else { return }
-            
-            do {
-                let relust = try JSONDecoder().decode(API.self, from: data)
+    func networkUpdate() {
+        shareAPI.fetchData(stringURL: basicURL) { relust in
+            DispatchQueue.main.async {
                 self.dateAPI = relust
                 self.delegate?.update()
-            } catch let error {
-                print(error)
             }
-        }.resume()
-    }
+        }
+     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dateAPI?.results.count ?? 0

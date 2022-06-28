@@ -8,22 +8,18 @@
 import UIKit
 
 class EpisodeViewController: UIViewController {
+    
+    var episodeURL: String?
+    var network = NetworkAPI()
 
+    @IBOutlet weak var episodeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        network.fetchData2(stringURL: episodeURL ?? "nil") { result in
+            DispatchQueue.main.async {
+                self.episodeLabel.text = result?.episode.joined(separator: "n/")
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

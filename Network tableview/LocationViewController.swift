@@ -10,6 +10,8 @@ import UIKit
 class LocationViewController: UIViewController {
     
     var locationURL: String?
+    
+    var shareAPI = NetworkAPI()
 
     @IBOutlet weak var localName: UILabel!
     
@@ -19,32 +21,13 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData1()
-        print(locationURL)
-    }
-    
-    
-    //"https://rickandmortyapi.com/api/location/"
-    
-    func fetchData1() {
-    
-        guard let url = URL(string: locationURL ?? "nil") else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            
-            guard let data = data else { return }
-            
-            do {
-                let relust = try JSONDecoder().decode(LocationModel.self, from: data)
-                DispatchQueue.main.async {
-                    self.localName.text = relust.name
-                    self.localType.text = relust.type
-                    self.localDimensin.text = relust.dimension
-//                    print(relust.name)
-                }
-            } catch let error {
-                print(error)
+//        fetchData1()
+        shareAPI.fetchData1(stringURL: locationURL ?? "nil") { result in
+            DispatchQueue.main.async {
+               self.localName.text = result?.name
+               self.localType.text = result?.type
+               self.localDimensin.text = result?.dimension
             }
-        }.resume()
+        }
     }
 }
