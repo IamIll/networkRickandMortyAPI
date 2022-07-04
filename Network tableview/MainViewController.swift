@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, TableDelegate {
+class MainViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
@@ -21,7 +21,12 @@ class MainViewController: UIViewController, UITableViewDelegate, TableDelegate {
         tableDS.networkUpdate()
         table.dataSource = tableDS
         table.delegate = self
-        tableDS.delegate = self
+        tableDS.onCompletion = { result in
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        }
+        table.prefetchDataSource = tableDS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -29,16 +34,10 @@ class MainViewController: UIViewController, UITableViewDelegate, TableDelegate {
         performSegue(withIdentifier: "GoDetail", sender: nil)
         }
     
-    func update() {
-        DispatchQueue.main.async {
-            self.table.reloadData()
-        }
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let index = index {
             let detailVC = segue.destination as! DetailController
             detailVC.detailCharacter = tableDS.dateAPI?.results[index.row]
         }
     }
-    
 }

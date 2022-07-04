@@ -23,7 +23,7 @@ struct Character: Decodable {
     let id: Int
     let name: String
     let status: Status
-    let species: Species
+//    let species: Species?
     let type: String
     let gender: Gender
     let origin, location: Location
@@ -45,13 +45,16 @@ struct Location: Decodable {
     let url: String
 }
 
-enum Species: String, Codable {
-    case alien = "Alien"
-    case human = "Human"
-}
+//enum Species: String, Codable {
+//    case alien = "Alien"
+//    case human = "Human"
+//    case humanoid = "Humanoid"
+//    case unknown = "unknown"
+//}
 
 enum Status: String, Codable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown = "unknown"
+    case humanoid = "Humanoid"
 }

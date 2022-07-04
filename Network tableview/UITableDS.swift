@@ -7,16 +7,17 @@
 
 import UIKit
 
-protocol TableDelegate {
-    func update ()
-}
-class TableDS: NSObject, UITableViewDataSource {
+class TableDS: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
-    var delegate: TableDelegate?
+    var index = 0
+    
+    var characterArray: [Character?] = []
+    
+    var onCompletion: ((API) -> Void)?
     
     var shareAPI = NetworkAPI()
     
-    let basicURL = "https://rickandmortyapi.com/api/character"
+    var basicURL = "https://rickandmortyapi.com/api/character"
     
     var dateAPI: API?
     
@@ -24,19 +25,31 @@ class TableDS: NSObject, UITableViewDataSource {
         shareAPI.fetchData(stringURL: basicURL) { relust in
             DispatchQueue.main.async {
                 self.dateAPI = relust
-                self.delegate?.update()
+                self.onCompletion?(relust!)
+                self.characterArray.append(contentsOf: self.dateAPI!.results)
             }
         }
      }
     
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]){
+//        print(indexPaths)
+        
+//        for index in indexPaths.last! {
+        if index >= characterArray.count - 1  {
+                basicURL = dateAPI?.info.next ?? "nil"
+                networkUpdate()
+            }
+//        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateAPI?.results.count ?? 0
+        return characterArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        
-        guard let positiv = dateAPI?.results[indexPath.row] else { return cell}
+        index = indexPath.row
+        guard let positiv = characterArray[indexPath.row] else { return cell}
         cell.configure(with: positiv)
         
         return cell

@@ -28,7 +28,7 @@ class DetailController: UIViewController {
         
         detailName.text = detailCharacter?.name
         detailType.text = "Location \(detailCharacter!.location.name)"
-        detailSpecies.text = detailCharacter?.species.rawValue
+        detailSpecies.text = detailCharacter?.gender.rawValue
         detailGender.text = detailCharacter?.gender.rawValue
         
         DispatchQueue.global().async {

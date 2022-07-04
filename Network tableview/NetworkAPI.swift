@@ -45,7 +45,7 @@ class NetworkAPI {
     }
     
     func fetchData2(stringURL: String, completionHandler: @escaping (Character?) -> Void){
-    
+        
         guard let url = URL(string: stringURL ?? "nil") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
@@ -55,9 +55,6 @@ class NetworkAPI {
             do {
                 let relust = try JSONDecoder().decode(Character.self, from: data)
                 completionHandler(relust)
-//                DispatchQueue.main.async {
-//                    self.episodeLabel.text = relust.episode.joined(separator: "/")
-//                }
             } catch let error {
                 print(error)
             }
