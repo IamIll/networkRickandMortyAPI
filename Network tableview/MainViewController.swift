@@ -18,7 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableDS.networkUpdate()
+        tableDS.сellCreation()
         table.dataSource = tableDS
         table.delegate = self
         tableDS.onCompletion = { result in
@@ -32,12 +32,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath
         performSegue(withIdentifier: "GoDetail", sender: nil)
-        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let index = index {
             let detailVC = segue.destination as! DetailController
-            detailVC.detailCharacter = tableDS.dateAPI?.results[index.row]
+            detailVC.detailCharacter = tableDS.characterArray[index.row]
         }
     }
 }

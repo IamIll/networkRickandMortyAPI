@@ -9,6 +9,8 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
+    var network = NetworkAPI()
+    
     @IBOutlet weak var imageNameCharacter: UIImageView!
     @IBOutlet weak var labelnameCharacter: UILabel!
     @IBOutlet weak var labelkindCharacter: UILabel!
@@ -20,15 +22,14 @@ class CustomTableViewCell: UITableViewCell {
         labelkindCharacter.text = result.origin.name
         labelnameLocation.text = result.created
         labelnameEpisode.text = result.episode.first
+        print(result.image)
         
-        DispatchQueue.global().async {
-            guard let imageUrl = URL(string: result.image) else { return }
-            guard let imageData = try? Data(contentsOf: imageUrl) else { return }
-            
-            DispatchQueue.main.async {
-                self.imageNameCharacter.image = UIImage(data: imageData)
+        DispatchQueue.main.async {
+            self.network.downloadImage(url: result.image) { (image) in
+                print(result.image)
+                self.imageNameCharacter.image = image
+                print(print(result.image))
             }
         }
-        
     }
 }

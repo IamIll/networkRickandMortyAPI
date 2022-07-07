@@ -20,7 +20,6 @@
 		33BE4F75285A085300CB4712 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE4F74285A085300CB4712 /* MainViewController.swift */; };
 		33BE4F77285A69D100CB4712 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE4F76285A69D100CB4712 /* CustomTableViewCell.swift */; };
 		33BE4F79285B8A1100CB4712 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE4F78285B8A1100CB4712 /* Model.swift */; };
-		33BE4F7D285D047E00CB4712 /* ViewControllerTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE4F7C285D047E00CB4712 /* ViewControllerTable.swift */; };
 		33BE4F7F286003EB00CB4712 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE4F7E286003EB00CB4712 /* DetailController.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		33BE4F74285A085300CB4712 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		33BE4F76285A69D100CB4712 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		33BE4F78285B8A1100CB4712 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		33BE4F7C285D047E00CB4712 /* ViewControllerTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTable.swift; sourceTree = "<group>"; };
 		33BE4F7E286003EB00CB4712 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +81,6 @@
 				33BE4F62285A068900CB4712 /* SceneDelegate.swift */,
 				33BE4F78285B8A1100CB4712 /* Model.swift */,
 				33406026286661F1002356F3 /* LocationModel.swift */,
-				33BE4F7C285D047E00CB4712 /* ViewControllerTable.swift */,
 				33BE4F74285A085300CB4712 /* MainViewController.swift */,
 				3340601C2864AD42002356F3 /* UITableDS.swift */,
 				33BE4F69285A068B00CB4712 /* Assets.xcassets */,
@@ -171,7 +168,6 @@
 				33BE4F61285A068900CB4712 /* AppDelegate.swift in Sources */,
 				3340602528665143002356F3 /* EpisodeViewController.swift in Sources */,
 				33406027286661F1002356F3 /* LocationModel.swift in Sources */,
-				33BE4F7D285D047E00CB4712 /* ViewControllerTable.swift in Sources */,
 				33BE4F77285A69D100CB4712 /* CustomTableViewCell.swift in Sources */,
 				3340602328665122002356F3 /* LocationViewController.swift in Sources */,
 				3325E5C9286B280700C6400D /* NetworkAPI.swift in Sources */,

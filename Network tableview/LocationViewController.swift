@@ -21,12 +21,12 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchData1()
-        shareAPI.fetchData1(stringURL: locationURL ?? "nil") { result in
+        
+        shareAPI.fetchData2(stringURL: locationURL ?? "nil", expacting: LocationModel.self) { result in
             DispatchQueue.main.async {
-               self.localName.text = result?.name
-               self.localType.text = result?.type
-               self.localDimensin.text = result?.dimension
+                self.localName.text = result.name
+                self.localType.text = result.type
+                self.localDimensin.text = result.dimension ?? "nil"
             }
         }
     }

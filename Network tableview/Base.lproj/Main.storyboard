@@ -206,7 +206,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="learn more"/>
                                 <connections>
-                                    <action selector="transitionLocation:" destination="7zM-w7-H6Z" eventType="touchUpInside" id="8qW-Fb-bVl"/>
                                     <segue destination="upu-NA-Tfg" kind="show" identifier="goLocation" id="pCj-vl-WXW"/>
                                 </connections>
                             </button>
@@ -218,7 +217,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="learn more"/>
                                 <connections>
-                                    <action selector="trancitionEpisode:" destination="7zM-w7-H6Z" eventType="touchUpInside" id="BfT-e5-9Td"/>
                                     <segue destination="dPw-yh-Qh9" kind="show" identifier="goEpisode" id="xzN-mb-sfe"/>
                                 </connections>
                             </button>
