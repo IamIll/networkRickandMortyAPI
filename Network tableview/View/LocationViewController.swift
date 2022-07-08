@@ -11,7 +11,7 @@ class LocationViewController: UIViewController {
     
     var locationURL: String?
     
-    var shareAPI = NetworkAPI()
+    var networkAPI = NetworkAPI()
 
     @IBOutlet weak var localName: UILabel!
     
@@ -22,7 +22,7 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shareAPI.fetchData2(stringURL: locationURL ?? "nil", expacting: LocationModel.self) { result in
+        networkAPI.fetchData2(stringURL: locationURL ?? "nil", expacting: LocationModel.self) { result in
             DispatchQueue.main.async {
                 self.localName.text = result.name
                 self.localType.text = result.type

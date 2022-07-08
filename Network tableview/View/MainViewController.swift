@@ -11,6 +11,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
+    var viewModel: MainViewControllerType?
+    
     var tableDS = TableDS()
     var netwok = NetworkAPI()
     var index: IndexPath?
@@ -27,10 +29,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
             }
         }
         table.prefetchDataSource = tableDS
+        viewModel = ViewModel()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath
+        viewModel?.selectRow(atIndexPath: indexPath)
         performSegue(withIdentifier: "GoDetail", sender: nil)
     }
     

@@ -16,12 +16,6 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        network.fetchData2(stringURL: episodeURL ?? "nil") { result in
-//            DispatchQueue.main.async {
-//                self.episodeLabel.text = result?.episode.joined(separator: "n/")
-//            }
-//        }
-        
         network.fetchData2(stringURL: episodeURL ?? "nil", expacting: Character.self ) { result in
             DispatchQueue.main.async {
                 self.episodeLabel.text = result.episode.joined(separator: "n/")
