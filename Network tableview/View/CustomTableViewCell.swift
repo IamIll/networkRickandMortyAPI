@@ -9,7 +9,7 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    var network = NetworkAPI()
+    var network = Network()
     
     @IBOutlet weak var imageNameCharacter: UIImageView!
     @IBOutlet weak var labelnameCharacter: UILabel!
@@ -17,19 +17,21 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var labelnameLocation: UILabel!
     @IBOutlet weak var labelnameEpisode: UILabel!
     
-    func configure(with result: Character) {
-        labelnameCharacter.text = result.name
-        labelkindCharacter.text = result.origin.name
-        labelnameLocation.text = result.created
-        labelnameEpisode.text = result.episode.first
-        print(result.image)
-        
-        DispatchQueue.main.async {
-            self.network.downloadImage(url: result.image) { (image) in
-                print(result.image)
-                self.imageNameCharacter.image = image
-                print(print(result.image))
+    var customViewModel: CustomViewProtol? {
+        willSet(customViewModel) {
+                labelnameCharacter.text = customViewModel?.name
+                labelkindCharacter.text = customViewModel?.origin
+                labelnameLocation.text = customViewModel?.created
+                labelnameEpisode.text = customViewModel?.episode
+            
+            DispatchQueue.main.async {
+                guard let imageData = self.customViewModel?.imageData else {return}
+                self.imageNameCharacter.image = UIImage(data: imageData)
             }
         }
     }
+
+        
+
+//    }
 }

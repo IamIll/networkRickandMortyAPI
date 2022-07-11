@@ -11,8 +11,10 @@ class LocationViewController: UIViewController {
     
     var locationURL: String?
     
-    var networkAPI = NetworkAPI()
-
+    var network = Network()
+    
+    var locationViewModel: LocationViewModelProtocol?
+    
     @IBOutlet weak var localName: UILabel!
     
     @IBOutlet weak var localType: UILabel!
@@ -22,12 +24,14 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkAPI.fetchData2(stringURL: locationURL ?? "nil", expacting: LocationModel.self) { result in
+        locationViewModel?.update(completion: {
             DispatchQueue.main.async {
-                self.localName.text = result.name
-                self.localType.text = result.type
-                self.localDimensin.text = result.dimension ?? "nil"
+                self.localName.text = self.locationViewModel?.name
+                self.localType.text = self.locationViewModel?.type
+                self.localDimensin.text = self.locationViewModel?.dimension
             }
-        }
+        })
+        
     }
 }
+

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class NetworkAPI {
+class Network {
     
     func fetchData2<T: Decodable>(stringURL: String, expacting: T.Type, completionHandler: @escaping (T) -> Void){
         
@@ -28,27 +28,11 @@ class NetworkAPI {
         }.resume()
     }
     
-    func downloadImage(url: String, completion: @escaping (_ image: UIImage)->()) {
-        
-        guard let url = URL(string: url) else { return }
-        
-        print(url)
-        
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            
-            print(url)
-            
-            if let data = data {
-                do {
-                    guard let image = try UIImage(data: data) else {return}
-                    DispatchQueue.main.async {
-                        completion(image)
-                    }
-                } catch let error {
-                    print(error)
-                }
-            }
-        }.resume()
+    func fetchImageData(from url: String?) -> Data? {
+            guard let url = url else {return nil}
+            guard let url = URL(string: url) else {return nil}
+            let imageData = try? Data(contentsOf: url)
+            return imageData
     }
 }
     

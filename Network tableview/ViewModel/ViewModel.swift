@@ -8,13 +8,14 @@
 import Foundation
 
 
-class ViewModel: MainViewControllerType {
+class ViewModel: MainViewControllerProtocol {
     
     var selectedIndexPath: IndexPath?
+    
+    var tableViewDataSource = TableViewDataSource()
     
     func selectRow(atIndexPath indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }
-    
-    
 }
+ 

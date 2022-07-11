@@ -10,17 +10,18 @@ import UIKit
 class EpisodeViewController: UIViewController {
     
     var episodeURL: String?
-    var network = NetworkAPI()
+    var network = Network()
+    
+    var episodeViewModel: EpisodeViewModelProtocol?
 
     @IBOutlet weak var episodeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        network.fetchData2(stringURL: episodeURL ?? "nil", expacting: Character.self ) { result in
+        episodeViewModel?.update(completion: {
             DispatchQueue.main.async {
-                self.episodeLabel.text = result.episode.joined(separator: "n/")
-                
+                self.episodeLabel.text = self.episodeViewModel?.episode
             }
-        }
+        })
     }
 }

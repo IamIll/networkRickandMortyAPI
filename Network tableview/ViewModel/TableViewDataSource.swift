@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TableDS: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching {
+class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
-    var index = 0
+    var index = 1
     
     var image: UIImage? 
     
@@ -17,17 +17,17 @@ class TableDS: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching
     
     var onCompletion: ((API) -> Void)?
     
-    var shareAPI = NetworkAPI()
+    var network = Network()
     
     var basicURL = "https://rickandmortyapi.com/api/character"
     
     var dateAPI: API?
     
-    var charakter: Character?
+//    var charakter: Character?
     
     func сellCreation() {
 
-        shareAPI.fetchData2(stringURL: basicURL, expacting: API.self) { result in
+        network.fetchData2(stringURL: basicURL, expacting: API.self) { result in
             DispatchQueue.main.async {
                 self.dateAPI = result
                 self.onCompletion?(result)
@@ -35,6 +35,7 @@ class TableDS: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching
             }
         }
     }
+    
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]){
 
         if index >= characterArray.count - 1  {
@@ -51,8 +52,10 @@ class TableDS: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         index = indexPath.row
         
-        guard let positiv = characterArray[indexPath.row] else { return cell}
-        cell.configure(with: positiv)
+        let customViewModel = CustomTableViewCelModel(charakter: characterArray[indexPath.row]!)
+        
+        cell.customViewModel = customViewModel
+        
         return cell
     }
 }

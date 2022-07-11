@@ -7,9 +7,11 @@
 
 import Foundation
 
-class DetailViewModel {
+class DetailViewModel: DetailViewModelProtocol {
     
     var detailCharacter: Character?
+    
+    var network = Network()
     
     var name: String? {
         return detailCharacter?.name
@@ -29,5 +31,20 @@ class DetailViewModel {
     
     var image: String? {
         return detailCharacter?.image
+    }
+    
+    var location: String? {
+        return detailCharacter?.location.url
+    }
+    var episode: String? {
+        return detailCharacter?.url
+    }
+    
+    var imageData: Data? {
+        network.fetchImageData(from: detailCharacter?.image)
+    }
+    
+    init(detailCharacter: Character) {
+        self.detailCharacter = detailCharacter
     }
 }

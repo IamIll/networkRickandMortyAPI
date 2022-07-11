@@ -11,24 +11,24 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
-    var viewModel: MainViewControllerType?
+    var viewModel: MainViewControllerProtocol?
     
-    var tableDS = TableDS()
-    var netwok = NetworkAPI()
+    var tableViewDataSource = TableViewDataSource()
+    var netwok = Network()
     var index: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableDS.сellCreation()
-        table.dataSource = tableDS
+        tableViewDataSource.сellCreation()
+        table.dataSource = tableViewDataSource
         table.delegate = self
-        tableDS.onCompletion = { result in
+        tableViewDataSource.onCompletion = { result in
             DispatchQueue.main.async {
                 self.table.reloadData()
             }
         }
-        table.prefetchDataSource = tableDS
+        table.prefetchDataSource = tableViewDataSource
         viewModel = ViewModel()
     }
     
@@ -41,7 +41,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let index = index {
             let detailVC = segue.destination as! DetailController
-            detailVC.detailCharacter = tableDS.characterArray[index.row]
+            let detailViewModel = DetailViewModel(detailCharacter: tableViewDataSource.characterArray[index.row]!)
+            detailVC.detailViewModel = detailViewModel
         }
     }
 }

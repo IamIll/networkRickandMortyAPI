@@ -9,13 +9,7 @@ import UIKit
 
 class DetailController: UIViewController {
     
-    var location = LocationViewController()
-    
-    var network = NetworkAPI()
-    
-    var detailCharacter: Character?
-    
-    var detailViewModel: DetailViewModelType?
+    var detailViewModel: DetailViewModelProtocol?
     
     @IBOutlet weak var detailGender: UILabel!
     @IBOutlet weak var detailSpecies: UILabel!
@@ -23,41 +17,34 @@ class DetailController: UIViewController {
     @IBOutlet weak var detailName: UILabel!
     @IBOutlet weak var imageDetail: UIImageView!
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         detailName.text = detailViewModel?.name
         detailType.text = "Location \(detailViewModel?.locationName)"
         detailSpecies.text = detailViewModel?.type
         detailGender.text = detailViewModel?.gender
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-//        detailName.text = detailCharacter?.name ?? "nil"
-//        detailType.text = "Location \(detailCharacter!.location.name)"
-//        detailSpecies.text = detailCharacter?.type ?? "nil"
-//        detailGender.text = detailCharacter?.gender.rawValue ?? "nil"
-        
-        DispatchQueue.global().async {
-        
-            self.network.downloadImage(url: self.detailViewModel?.image ?? "nil") { image in
-                DispatchQueue.main.async {
-                    self.imageDetail.image = image
-                }
-            }
+        DispatchQueue.main.async {
+            guard let imageData = self.detailViewModel?.imageData else {return}
+            self.imageDetail.image = UIImage(data: imageData)
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goLocation" {
             let detailVC = segue.destination as! LocationViewController
-            detailVC.locationURL = detailCharacter?.location.url
+            let locationViewModel = LocationViewModel()
+            detailVC.locationURL = detailViewModel?.location
+            locationViewModel.locationURL = detailVC.locationURL
+            detailVC.locationViewModel = locationViewModel
         }
         if segue.identifier == "goEpisode" {
             let detailVC = segue.destination as! EpisodeViewController
-            detailVC.episodeURL = detailCharacter?.url
+            let episodeViewModel = EpisodeViewModel()
+            detailVC.episodeURL = detailViewModel?.episode
+            episodeViewModel.episodeURL = detailVC.episodeURL
+            detailVC.episodeViewModel = episodeViewModel
         }
     }
 }

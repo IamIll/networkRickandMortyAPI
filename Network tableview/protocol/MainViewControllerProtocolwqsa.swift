@@ -8,6 +8,6 @@
 import Foundation
 
 
-protocol MainViewControllerType {
+protocol MainViewControllerProtocol {
     func selectRow(atIndexPath indexPath: IndexPath)
 }
