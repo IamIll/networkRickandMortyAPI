@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  MainViewModel.swift
 //  Network tableview
 //
 //  Created by Илья Дунайцев on 08.07.2022.
@@ -14,7 +14,7 @@ protocol MainViewControllerProtocol {
     var mainTableDataSource: TableViewDataSource? {get set}
 }
 
-class ViewModel: MainViewControllerProtocol {
+class MainViewModel: MainViewControllerProtocol {
     
     var mainTableDataSource: TableViewDataSource?
     

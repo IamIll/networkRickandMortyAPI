@@ -11,34 +11,32 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
-    var viewModel: ViewModel?
+    var viewModel = MainViewModel()
     
     var tableViewDataSource: TableViewDataSource?
     
     var index: IndexPath?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel = ViewModel()
-        tableViewDataSource = TableViewDataSource()
-        
-        viewModel?.mainTableDataSource = tableViewDataSource
-        
-        
-        viewModel?.update(completion: {
+    func reloading() {
+        viewModel.update {
             DispatchQueue.main.async {
                 self.table.reloadData()
             }
-        })
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        viewModel?.mainTableDataSource?.completionHandler = { url in
-            self.viewModel?.basicURL =  url
-            self.viewModel?.update {
-                DispatchQueue.main.async {
-                    self.table.reloadData()
-                }
-            }
+        tableViewDataSource = TableViewDataSource()
+        
+        viewModel.mainTableDataSource = tableViewDataSource
+        
+        reloading()
+        
+        viewModel.mainTableDataSource?.completionHandler = { url in
+            self.viewModel.basicURL =  url
+            self.reloading()
         }
         
         table.dataSource = self.tableViewDataSource
@@ -48,7 +46,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath
-        viewModel?.selectRow(atIndexPath: indexPath)
+        viewModel.selectRow(atIndexPath: indexPath)
         performSegue(withIdentifier: "GoDetail", sender: nil)
     }
     
