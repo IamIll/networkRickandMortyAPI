@@ -206,7 +206,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="learn more"/>
                                 <connections>
-                                    <action selector="transitionLocation:" destination="7zM-w7-H6Z" eventType="touchUpInside" id="8qW-Fb-bVl"/>
                                     <segue destination="upu-NA-Tfg" kind="show" identifier="goLocation" id="pCj-vl-WXW"/>
                                 </connections>
                             </button>
@@ -218,7 +217,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="learn more"/>
                                 <connections>
-                                    <action selector="trancitionEpisode:" destination="7zM-w7-H6Z" eventType="touchUpInside" id="BfT-e5-9Td"/>
                                     <segue destination="dPw-yh-Qh9" kind="show" identifier="goEpisode" id="xzN-mb-sfe"/>
                                 </connections>
                             </button>
@@ -270,29 +268,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIG-rv-512">
-                                <rect key="frame" x="20" y="188" width="374" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="oBf-dS-pc0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLD-FB-jKh">
-                                <rect key="frame" x="20" y="348" width="374" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="poa-iK-8lC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH2-L9-vbT">
-                                <rect key="frame" x="20" y="508" width="374" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="YBC-8p-WO0"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIG-rv-512">
+                                <rect key="frame" x="20" y="188" width="374" height="664"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -302,17 +279,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="AIG-rv-512" firstAttribute="leading" secondItem="QIU-lZ-RXz" secondAttribute="leading" constant="20" id="4tl-C1-ML3"/>
-                            <constraint firstItem="QIU-lZ-RXz" firstAttribute="trailing" secondItem="jH2-L9-vbT" secondAttribute="trailing" constant="20" id="85c-Wc-jn1"/>
-                            <constraint firstItem="QIU-lZ-RXz" firstAttribute="trailing" secondItem="wLD-FB-jKh" secondAttribute="trailing" constant="20" id="H64-g7-Xcw"/>
-                            <constraint firstItem="jH2-L9-vbT" firstAttribute="top" secondItem="wLD-FB-jKh" secondAttribute="bottom" constant="80" id="KX4-z9-U1f"/>
-                            <constraint firstItem="wLD-FB-jKh" firstAttribute="leading" secondItem="QIU-lZ-RXz" secondAttribute="leading" constant="20" id="PZ6-bY-9aB"/>
-                            <constraint firstItem="jH2-L9-vbT" firstAttribute="leading" secondItem="QIU-lZ-RXz" secondAttribute="leading" constant="20" id="WED-IK-sOz"/>
+                            <constraint firstItem="QIU-lZ-RXz" firstAttribute="bottom" secondItem="AIG-rv-512" secondAttribute="bottom" constant="10" id="ext-qR-7Gd"/>
                             <constraint firstItem="QIU-lZ-RXz" firstAttribute="trailing" secondItem="AIG-rv-512" secondAttribute="trailing" constant="20" id="gje-sk-OvW"/>
                             <constraint firstItem="AIG-rv-512" firstAttribute="top" secondItem="QIU-lZ-RXz" secondAttribute="top" constant="100" id="jFs-Ji-Ac4"/>
-                            <constraint firstItem="wLD-FB-jKh" firstAttribute="top" secondItem="AIG-rv-512" secondAttribute="bottom" constant="80" id="lzN-3F-uyX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4gJ-E1-gsc"/>
+                    <connections>
+                        <outlet property="episodeLabel" destination="AIG-rv-512" id="Vfh-cO-Ghg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZe-IX-h3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
