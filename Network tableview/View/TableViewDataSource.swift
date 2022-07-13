@@ -45,10 +45,10 @@ class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         index = indexPath.row
         
-        let customViewModel = CustomTableViewCelModel(charakter: characterArray[indexPath.row]!)
+        let customViewModel = CustomTableViewCelModel(сharacter: characterArray[indexPath.row]!)
         
         cell.customViewModel = customViewModel
-        
+         
         return cell
     }
 }

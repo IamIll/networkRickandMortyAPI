@@ -13,31 +13,31 @@ protocol CustomViewProtol {
     var created: String? { get }
     var episode: String? { get }
     var imageData: Data? { get }
-    var charakter: Character? { get }
+    var сharacter: Character? { get }
 }
 
 class CustomTableViewCelModel: CustomViewProtol {
     
-    var charakter: Character?
+    var сharacter: Character?
     
     var network = Network()
     
     var name: String? {
-        return charakter?.name
+        return сharacter?.name
     }
     var origin: String? {
-        return charakter?.origin.name
+        return сharacter?.origin.name
     }
     var created: String? {
-        return charakter?.created
+        return сharacter?.created
     }
     var episode: String? {
-        return charakter?.episode.first
+        return сharacter?.episode.first
     }
     var imageData: Data? {
-        network.fetchImageData(from: charakter?.image)
+        network.fetchImageData(from: сharacter?.image)
     }
-    init(charakter: Character) {
-        self.charakter = charakter
+    init(сharacter: Character) {
+        self.сharacter = сharacter
     }
 }

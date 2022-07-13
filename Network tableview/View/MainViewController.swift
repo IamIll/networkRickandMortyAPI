@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     var index: IndexPath?
     
-    func reloading() {
+    func addingСharacters() {
         viewModel.update {
             DispatchQueue.main.async {
                 self.table.reloadData()
@@ -32,11 +32,11 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         viewModel.mainTableDataSource = tableViewDataSource
         
-        reloading()
+        addingСharacters()
         
         viewModel.mainTableDataSource?.completionHandler = { url in
             self.viewModel.basicURL =  url
-            self.reloading()
+            self.addingСharacters()
         }
         
         table.dataSource = self.tableViewDataSource
