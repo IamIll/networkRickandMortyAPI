@@ -10,7 +10,6 @@ import UIKit
 class EpisodeViewController: UIViewController {
     
     var episodeURL: String?
-    var network = Network()
     
     var episodeViewModel: EpisodeViewModelProtocol?
 

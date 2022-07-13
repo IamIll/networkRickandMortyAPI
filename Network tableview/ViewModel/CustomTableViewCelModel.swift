@@ -36,7 +36,7 @@ class CustomTableViewCelModel: CustomViewProtol {
     }
     
     var imageData: Data? {
-        network.fetchImageData(from: charakter?.image)
+            network.fetchImageData(from: charakter?.image)
     }
     
     init(charakter: Character) {

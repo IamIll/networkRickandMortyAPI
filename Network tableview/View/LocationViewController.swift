@@ -11,8 +11,6 @@ class LocationViewController: UIViewController {
     
     var locationURL: String?
     
-    var network = Network()
-    
     var locationViewModel: LocationViewModelProtocol?
     
     @IBOutlet weak var localName: UILabel!

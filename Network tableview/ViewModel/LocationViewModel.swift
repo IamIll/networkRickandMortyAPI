@@ -32,9 +32,7 @@ class LocationViewModel: LocationViewModelProtocol {
         network.fetchData2(stringURL: url,
                            expacting: LocationModel.self) { result in
             self.name = result.name
-            print(result.name)
             self.type = result.type
-            print(result.type)
             self.dimension = result.dimension ?? "nil"
             completion()
         }

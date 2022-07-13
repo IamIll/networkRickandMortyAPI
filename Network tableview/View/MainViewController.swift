@@ -11,25 +11,39 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
-    var viewModel: MainViewControllerProtocol?
+    var viewModel: ViewModel?
     
-    var tableViewDataSource = TableViewDataSource()
-    var netwok = Network()
+    var tableViewDataSource: TableViewDataSource?
+    
     var index: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewDataSource.сellCreation()
-        table.dataSource = tableViewDataSource
-        table.delegate = self
-        tableViewDataSource.onCompletion = { result in
+        viewModel = ViewModel()
+        tableViewDataSource = TableViewDataSource()
+        
+        viewModel?.mainTableDataSource = tableViewDataSource
+        
+        
+        viewModel?.update(completion: {
             DispatchQueue.main.async {
                 self.table.reloadData()
             }
+        })
+        
+        viewModel?.mainTableDataSource?.completionHandler = { url in
+            self.viewModel?.basicURL =  url
+            self.viewModel?.update {
+                DispatchQueue.main.async {
+                    self.table.reloadData()
+                }
+            }
         }
-        table.prefetchDataSource = tableViewDataSource
-        viewModel = ViewModel()
+        
+        table.dataSource = self.tableViewDataSource
+        table.delegate = self
+        table.prefetchDataSource = self.tableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -41,7 +55,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let index = index {
             let detailVC = segue.destination as! DetailController
-            let detailViewModel = DetailViewModel(detailCharacter: tableViewDataSource.characterArray[index.row]!)
+            guard let detailCharacter = tableViewDataSource?.characterArray[index.row] else {return}
+            let detailViewModel = DetailViewModel(detailCharacter: detailCharacter)
             detailVC.detailViewModel = detailViewModel
         }
     }

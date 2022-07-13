@@ -7,11 +7,15 @@
 
 import UIKit
 
+//protocol DelegateForDelegate {
+//    func upDateURL(type: String, completion: @escaping () -> Void)
+//}
+
 class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
-    var index = 1
+//    var delegate: DelegateForDelegate?
     
-    var image: UIImage? 
+    var index = 1
     
     var characterArray: [Character?] = []
     
@@ -23,24 +27,13 @@ class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDataSourc
     
     var dateAPI: API?
     
-//    var charakter: Character?
-    
-    func сellCreation() {
-
-        network.fetchData2(stringURL: basicURL, expacting: API.self) { result in
-            DispatchQueue.main.async {
-                self.dateAPI = result
-                self.onCompletion?(result)
-                self.characterArray.append(contentsOf: self.dateAPI!.results)
-            }
-        }
-    }
+    var completionHandler: ((String) -> Void)?
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]){
-
+        
         if index >= characterArray.count - 1  {
-                basicURL = dateAPI?.info.next ?? "nil"
-                сellCreation()
+            basicURL = dateAPI?.info.next ?? "nil"
+            completionHandler?(basicURL)
         }
     }
     

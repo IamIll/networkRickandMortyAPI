@@ -24,27 +24,24 @@ class DetailController: UIViewController {
         detailType.text = "Location \(detailViewModel?.locationName)"
         detailSpecies.text = detailViewModel?.type
         detailGender.text = detailViewModel?.gender
-        
-        DispatchQueue.main.async {
-            guard let imageData = self.detailViewModel?.imageData else {return}
-            self.imageDetail.image = UIImage(data: imageData)
-        }
+        guard let imageData = detailViewModel?.imageData else {return}
+        imageDetail.image = UIImage(data: imageData)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goLocation" {
-            let detailVC = segue.destination as! LocationViewController
+            let detailViewController = segue.destination as! LocationViewController
             let locationViewModel = LocationViewModel()
-            detailVC.locationURL = detailViewModel?.location
-            locationViewModel.locationURL = detailVC.locationURL
-            detailVC.locationViewModel = locationViewModel
+            detailViewController.locationURL = detailViewModel?.location
+            locationViewModel.locationURL = detailViewController.locationURL
+            detailViewController.locationViewModel = locationViewModel
         }
         if segue.identifier == "goEpisode" {
-            let detailVC = segue.destination as! EpisodeViewController
+            let detailViewController = segue.destination as! EpisodeViewController
             let episodeViewModel = EpisodeViewModel()
-            detailVC.episodeURL = detailViewModel?.episode
-            episodeViewModel.episodeURL = detailVC.episodeURL
-            detailVC.episodeViewModel = episodeViewModel
+            detailViewController.episodeURL = detailViewModel?.episode
+            episodeViewModel.episodeURL = detailViewController.episodeURL
+            detailViewController.episodeViewModel = episodeViewModel
         }
     }
 }
